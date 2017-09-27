@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Tweets search</title>
+</head>
+
+<body>
+
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">ADESQ Tweet List</a>
+    </div>
+</nav>
+<h3>Twitter Search form</h3>
+<form action="#" th:action="@{/}" th:object="${tweetSearch}" method="post">
+    <div class="row">
+        <div class="input-field col s12">
+            <p>HashTag: <input type="text" th:field="*{hashTag}" /></p>
+        </div>
+        <div class="input-field col s12">
+            <p>NB tweets: <input type="text" th:field="*{nbOfTweets}" /></p>
+        </div>
+        <div class="input-field col s12">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            </button>
+            <a class="waves-effect waves-light btn" type="reset">Reset</a>
+        </div>
+    </div>
+
+</form>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</html>
