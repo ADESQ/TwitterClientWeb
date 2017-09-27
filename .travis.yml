@@ -1,0 +1,31 @@
+language: java
+jdk:
+- oraclejdk8
+install:
+- mvn -N io.takari:maven:wrapper
+- ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+before_deploy:
+- zip -r latest target/twitterclient-0.0.1-SNAPSHOT.jar
+- mkdir -p dpl_cd_upload
+- mv latest.zip dpl_cd_upload/latest.zip
+deploy:
+- provider: s3
+  access_key_id: AKIAJORCVK25STTSI2YQ
+  secret_access_key:
+    secure: ZY9XAhBu9+P8MW0qwIRFBQxAtfcl9OrkUOXIUdUBLEQ/vEW3vsEWjcXlRD1HM5F+3WumDpIO7REIPPjt60wrBlvlJpCLH+TbHh8gthgM+PVinvCPRTB3aiUGWtbxZGXBChaSbOXh53i0exqQNpfQFy34dnnMf5A7CIpbxShxJrtFcZDEPo9lERdn0NXHcnyZ8vBts6kr5ydMpFDtkQILej0uu+0FVzVNstWg3v1HEg4t3SpShc09O09yBKJwNwxqensqyHd+QnpN11qomnbzyYXH525lip5n+UbgEUNIVgDKsY7miQmcvbREf8wVB7zg4c9rYGX1Um5DBV2zIP7gmJBP8LReloub7SFjKyeg5Zp1isDRC8aCTLdrA+BngoBEWIAC0SCVkI5AZHDLfQzvmZKWklv/9FEYZYsQ30LjWu8rpeB6yw+HASiOqPXaWn1qPJ5BcKyxIjZDDekyNjhUix3rFk8N/nDXjKH5BZWlK2GnUYM4o4+OwB5WvDSVLv9uUmoHN2aXWNk/efVFpOzLsmhh2YF6GGmRlYMDP9fpHLslz//RE7+XCRCo7K7oH1PQkziDNWBae2p7DL46V2/gGN/I5YD9n2OFvRfn1U6NVWzOiTgMxEB9yrxZGeMxCG0ZIe1hHKfwxgfHdoAWAzzc9IXZEhK/uXhQ8OS3BU02VYM=
+  bucket: aws-bucket-twitter-client
+  skip_cleanup: true
+  region: eu-west-2
+  local_dir: dpl_cd_upload
+- provider: codedeploy
+  access_key_id: AKIAJORCVK25STTSI2YQ
+  secret_access_key:
+    secure: ZY9XAhBu9+P8MW0qwIRFBQxAtfcl9OrkUOXIUdUBLEQ/vEW3vsEWjcXlRD1HM5F+3WumDpIO7REIPPjt60wrBlvlJpCLH+TbHh8gthgM+PVinvCPRTB3aiUGWtbxZGXBChaSbOXh53i0exqQNpfQFy34dnnMf5A7CIpbxShxJrtFcZDEPo9lERdn0NXHcnyZ8vBts6kr5ydMpFDtkQILej0uu+0FVzVNstWg3v1HEg4t3SpShc09O09yBKJwNwxqensqyHd+QnpN11qomnbzyYXH525lip5n+UbgEUNIVgDKsY7miQmcvbREf8wVB7zg4c9rYGX1Um5DBV2zIP7gmJBP8LReloub7SFjKyeg5Zp1isDRC8aCTLdrA+BngoBEWIAC0SCVkI5AZHDLfQzvmZKWklv/9FEYZYsQ30LjWu8rpeB6yw+HASiOqPXaWn1qPJ5BcKyxIjZDDekyNjhUix3rFk8N/nDXjKH5BZWlK2GnUYM4o4+OwB5WvDSVLv9uUmoHN2aXWNk/efVFpOzLsmhh2YF6GGmRlYMDP9fpHLslz//RE7+XCRCo7K7oH1PQkziDNWBae2p7DL46V2/gGN/I5YD9n2OFvRfn1U6NVWzOiTgMxEB9yrxZGeMxCG0ZIe1hHKfwxgfHdoAWAzzc9IXZEhK/uXhQ8OS3BU02VYM=
+  bucket: aws-bucket-twitter-client
+  key: latest.zip
+  bundel_type: zip
+  application: TwitterClient
+  deployment_group: TwitterClient
+  region: eu-west-2
+  on:
+    branch: master
