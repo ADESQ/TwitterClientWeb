@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 .idea
+target
 
 # Log file
 *.log
@@ -31,6 +32,7 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+twitterclient.iml
 
 # Avoid ignoring Maven wrapper jar file (.jar files are usually ignored)
 !/.mvn/wrapper/maven-wrapper.jar
