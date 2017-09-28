@@ -16,13 +16,13 @@ public class TwitterConroller {
     @Autowired
     private Twitter twitter;
 
-    @GetMapping("/tweet")
+    @GetMapping("/")
     public String twitterForm(Model model) {
         model.addAttribute("tweetSearch", new TweetSearch());
         return "tweetSearch";
     }
 
-    @PostMapping("/tweet")
+    @PostMapping("/")
     public String getTweets(@ModelAttribute TweetSearch tweetSearch, Model model) {
         List<Tweet> tweets = twitter.searchOperations().search(tweetSearch.getHashTag(), tweetSearch.getNbOfTweets()).getTweets();
         model.addAttribute("tweets", tweets);
