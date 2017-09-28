@@ -9,8 +9,8 @@ after_success:
 - mv scripts/start_server.sh zipFile/
 - mv appspec.yml zipFile/
 - mv target/twitterclient-0.0.1-SNAPSHOT.jar zipFile/
-before_deploy:
-- zip -r latest zipFile
+- cd zipFile
+- zip -r latest *
 - mkdir -p dpl_cd_upload
 - mv latest.zip dpl_cd_upload/latest.zip
 deploy:
