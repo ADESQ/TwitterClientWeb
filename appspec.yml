@@ -3,6 +3,14 @@ os: linux
 files:
   - source: ./
     destination: /var/www
+permissions:
+  - object: /var/www
+    pattern: "start_server.sh"
+    owner: root
+    group: root
+    mode: 751
+    type:
+      - file
 hooks:
   ApplicationStart:
     - location: start_server.sh
