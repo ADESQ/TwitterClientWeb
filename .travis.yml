@@ -3,7 +3,7 @@ jdk:
 - oraclejdk8
 install:
 - mvn -N io.takari:maven:wrapper
-- ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+- "./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
 after_success:
 - zip -r latest *
 - mkdir -p dpl_cd_upload
@@ -29,3 +29,7 @@ deploy:
   region: eu-west-2
   on:
     branch: master
+env:
+  global:
+  - secure: zVqjSYlT1taL2c9V48rKUzjiS86t0kksJqZEywWswPB43rv+uo1lITgQVoL5Mi3hDpMZtd1NJ9kmzmMADiOf3r6WZLd9gtcxnUavfZx2RNP1JlBUAtTCZqvgrDN2XD3+D0OC/Oci4tjfM90+H6vFbtoHazsAmRqPQ/u24I0EgqZla3LuUYzSIRrTzcO5AUsDjC0RYoD2naVmV7Bm31ds2dHOrcZftt+v8tRJ9wljN1bF/pLr+uHLw0LZGQ+XdTrH5q8xMIh23xgXG9eD5e6mna02WqQJLH+xWgrijUW9ugeG590RWSUy4bNZJfTZvZPBythIBZRbug272wDoETalXjRvvyG3Ne6AtD8dHic95+3xNI3Vjynarx+oh9MWqvVsbzGMdO/FV+iREEKwYKftZ2LyV21LoOpyIj6tWem1PRxlX2686p3V4Gi6PQfv7rFSz2Zs9PBzJmdZm4gmzBHDY/zLIVqYX7mzFUSEqyiLWS/1tba4zetqhxdZFnOqdQDSAfXDgYTfegnbaaoMa9F1vPY2TsWZawvuIGq4A7lJD5V0patxwG8QXZvc7bTzsmsGEOu7gqsTBuax16G62zHSrFaoUcTTFCy3MX5SaZzoB+/N4u8tXGT2RmWdp2ZcNCdInO2WmsI+baN/Lz6+NQgIjyzqtZ6x3R92+oKmM6KBPFA=
+  - secure: gj9lk2p904hKTNqtj6DOZrV36pDf6QMXShASiiMujp2ZYes/DmUNo0EDioMsvQB0HbudZQhOKllnrAr5YtXKEwf1BP8ChyBdbi4qfnBECLbjLQYzwCfG1Ey3HeRcNRyHUx1TsmrTZqnW+uMlxfZ6a9ZpmK0cd9BT2yYz50Az52sdmvRSBhGNt1Hj45vpLVINqS41uwHZmHgFJIQ3+bckPtS7AEGHEi8NHVrFCm1wZDjgCD2zIaj+HJbX+58BP9HQtIF4XSHb2Tw9JBriUGjBiFyj0GCxDoM91vVAUlaieOVO/Q5VJUeW+YllaGJMCUEYRdl+GbKOW4UXEjVS7tjG/TXrppQcQT1pvkqHKCd/s8/oq9Ez3ibKbY3c0SdbYJ3afspcXUXK9q9HlEnDL1rAElOsWbX1S+wj7tjAZkxD45fn+Ff0yDct2pTQIsd4EHWrUWxL5gGLxg97IfByOH5O/CqHJZf58SkyMXK4EyC9GJrFyvcyXQu/3BJ7aIrn3EeFnltYW/r2A4NFSXF044SDjayr/eOTi4/E1huy96alQfJZsja1dDBynP4izhg+ehfLRVLLb04AalRh9sU5MeZP6JoODfwDQCSqjyWNXQM/LXu2nCIG3mTonV98sxbTkPHUsVyfCvGlNh1JWGG2uHuKS3iqp6pGa8HID+/zOcJKTE8=
